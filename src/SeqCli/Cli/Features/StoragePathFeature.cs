@@ -1,6 +1,10 @@
 using System;
 using System.IO;
 
+#if WINDOWS
+using SeqCli.Forwarder.ServiceProcess;
+#endif
+
 namespace SeqCli.Cli.Features;
 
 class StoragePathFeature : CommandFeature

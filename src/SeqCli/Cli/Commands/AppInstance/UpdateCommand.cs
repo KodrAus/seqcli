@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Datalust Pty Ltd
+// Copyright © Datalust Pty Ltd and Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace SeqCli.Cli;
+using Seq.Api;
+using SeqCli.Connection;
 
-public class CommandMetadata : ICommandMetadata
-{
-    public required string Name { get; set; }
-    public string? SubCommand { get; set; }
-    public required string HelpText { get; set; }
-    public string? Example { get; set; }
-}
+namespace SeqCli.Cli.Commands.AppInstance;
+
+[Command("appinstance", "update",
+    "Update an existing app instance",
+    Example="seqcli appinstance update --json '{...}'")]
+class UpdateCommand(SeqConnectionFactory connectionFactory):
+    Shared.UpdateCommand(connectionFactory, "appinstance", nameof(SeqConnection.AppInstances), "app instance");
+    
